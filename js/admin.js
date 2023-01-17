@@ -6,6 +6,7 @@ const file = document.querySelector(".file");
 const list = document.querySelector(".list");
 const editButton = document.querySelector(".product-edit");
 const deleteButton = document.querySelector(".product-delete");
+const removeToken = document.querySelector(".nav-token");
 const output = document.querySelector(".output");
 // Template
 const listTemplate = document.querySelector(".listTemplate").content;
@@ -13,6 +14,11 @@ const listTemplate = document.querySelector(".listTemplate").content;
 const localData = localStorage.getItem("token");
 // Fragment
 let fragment = document.createDocumentFragment();
+
+removeToken.addEventListener("click", () => {
+  localStorage.removeItem(localData);
+  window.location.replace("register.html");
+});
 
 // Upload img
 imgInp.onchange = (evt) => {
