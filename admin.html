@@ -151,10 +151,15 @@
                     <div class="d-block">
                         <form class="form">
                             <span class="fw-bold d-block mb-2">Add an image</span>
-                            <label class="custom-file-upload mb-3">
-                                <input class="file mb-2" type="file" required>
-                                <i class="fa-solid fa-upload"></i> Upload an image
-                            </label>
+                            <div class="row">
+                                <label class="col-6 custom-file-upload mb-3">
+                                    <input class="file mb-2" type="file" id="imgInp" required>
+                                    <i class="fa-solid fa-upload"></i> Upload an image
+                                </label>
+                                <div class="col-6">
+                                    <img class="output img-fluid">
+                                </div>
+                            </div>
                             <span class="fw-bold d-block mb-2">Add product name</span>
                             <input class="form-control mt-2 mb-2 product-name" type="text" placeholder="Product name"
                                 required>

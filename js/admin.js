@@ -6,6 +6,7 @@ const file = document.querySelector(".file");
 const list = document.querySelector(".list");
 const editButton = document.querySelector(".product-edit");
 const deleteButton = document.querySelector(".product-delete");
+const output = document.querySelector(".output");
 // Template
 const listTemplate = document.querySelector(".listTemplate").content;
 // Local Data
@@ -13,8 +14,18 @@ const localData = localStorage.getItem("token");
 // Fragment
 let fragment = document.createDocumentFragment();
 
+// Upload img
+imgInp.onchange = (evt) => {
+  let [file] = imgInp.files;
+  if (file) {
+    output.src = URL.createObjectURL(file);
+  }
+};
+// Upload img
+
 const renderProduct = (array, node) => {
-  node.innerHTML = [];
+  node.innerHTML = "";
+
   array.forEach((item) => {
     let clonedTemplate = listTemplate.cloneNode(true);
     clonedTemplate.querySelector(".product-img").src =
