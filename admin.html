@@ -47,6 +47,12 @@
                                 Products
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html">
+                                <i class="zmdi zmdi-shopping-cart"></i>
+                                Home page
+                            </a>
+                        </li>
                     </ul>
 
                     <h6
@@ -180,6 +186,43 @@
         </div>
     </div>
 
+    <!--* New modal -->
+    <div class="container">
+        <div class="row  Edit d-none">
+            <div class="col-3 offset-1 shadow p-2  mt-5 border-info bg-light rounded position-relative">
+                <button class=" js-editbtn btn  h1 text-danger position-absolute top-0 end-0" type="button">X </button>
+                <h2 class="h2 text-center mb-3   ">Edit product</h2>
+                <form class="js-formedit">
+                    <input class=" js-inputNE form-control mb-3" type="text" placeholder="Product_name" />
+                    <input class="form-control js-inputDE mb-3" type="text" placeholder="Product_desc" />
+                    <input class="form-control js-inputIE mb-3" type="file" placeholder="Product_file" />
+                    <input class="form-control js-inputPE mb-3" type="text" placeholder="Product_price" />
+                    <button class="btn btn-danger" type="submit">Add Edit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row edit-modal d-none">
+            <div class="col-3 offset-1 shadow p-2  mt-5 border-info bg-light rounded modalX">
+                <button class="removeModal btn h1 fs-1 text-danger position-absolute top-0 end-0"
+                    type="button">&times;</button>
+                <h2 class="h2 text-center mb-3">Edit product</h2>
+                <form class="form-edit">
+                    <label class="col-6 custom-file-upload mb-3">
+                        <input class="file-edit mb-2" type="file" id="imgInp" required>
+                        <i class="fa-solid fa-upload"></i> Upload an image
+                    </label>
+                    <input class="form-control product-name-edit form-control mb-3" type="text"
+                        placeholder="Product_name" />
+                    <input class="form-control product-descr-edit mb-3" type="text" placeholder="Product_desc" />
+                    <input class="form-control product-price-edit mb-3" type="text" placeholder="Product_price" />
+
+                    <button class="btn btn-danger" type="submit">Add Edit</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- <script src="./js/"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

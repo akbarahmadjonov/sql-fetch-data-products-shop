@@ -8,12 +8,22 @@ const editButton = document.querySelector(".product-edit");
 const deleteButton = document.querySelector(".product-delete");
 const removeToken = document.querySelector(".nav-token");
 const output = document.querySelector(".output");
+const editModal = document.querySelector(".edit-modal");
 // Template
 const listTemplate = document.querySelector(".listTemplate").content;
 // Local Data
 const localData = localStorage.getItem("token");
 // Fragment
 let fragment = document.createDocumentFragment();
+
+// Edit modal
+const formEdit = document.querySelector(".form-edit");
+const fileEdit = document.querySelector(".file-edit");
+const productNameEdit = document.querySelector(".product-name-edit");
+const productPriceEdit = document.querySelector(".product-price-edit");
+const productDescrEdit = document.querySelector(".product-descr-edit");
+const removeModal = document.querySelector(".removeModal");
+// Edit modal
 
 removeToken.addEventListener("click", () => {
   localStorage.removeItem(localData);
@@ -102,22 +112,37 @@ const deleteProduct = (id) => {
 };
 
 const editProduct = (id) => {
-  fetch(`https://localhost:5000/product/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: localData,
-    },
-    body: JSON.stringify({}),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data) {
-        getProductsFromSQL();
-      }
+  editModal.classList.toggle("d-none");
+  formEdit.addEventListener("submit", (evt) => {
+    evt.preventDefault();
+    const formData = new FormData();
+    const img = fileEdit.files[0];
+
+    formData.append("product_name", productNameEdit.value);
+    formData.append("product_desc", productDescrEdit.value);
+    formData.append("product_img", img);
+    formData.append("product_price", productPriceEdit.value);
+
+    fetch(`http://localhost:5000/product/${id}`, {
+      method: "PUT",
+      headers: {
+        // "Content-Type": "application/json",
+        Authorization: localData,
+      },
+      body: formData,
     })
-    .catch((err) => console.log(err));
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          getProductsFromSQL();
+        }
+      })
+      .catch((err) => console.log(err));
+  });
 };
+removeModal.addEventListener("click", () => {
+  editModal.classList.toggle("d-none");
+});
 
 list.addEventListener("click", (evt) => {
   if (evt.target.matches(".product-delete")) {
@@ -127,6 +152,6 @@ list.addEventListener("click", (evt) => {
 
   if (evt.target.matches(".product-edit")) {
     const productId = evt.target.dataset.productId;
-    editButton(productId);
+    editProduct(productId);
   }
 });
